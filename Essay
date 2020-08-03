@@ -19,16 +19,27 @@ Efforts are underway to avoid such ‘redlining’ by sensitive attributes and p
 These strategies are seen in the development of privacy preserving, fairness- and discrimination-aware data mining (Dwork et al., 2011; Kamishima et al., 2012). Fairness-aware data mining takes the broadest aim, as it gives attention not only to discrimination but fairness, neutrality, and independence as well (Kamishima et al., 2012). Various metrics of fairness are possible based on statistical parity, differential privacy and other relations between data subjects in classification tasks (Dwork et al., 2011; Romei and Ruggieri, 2014).
 
 Discrimination vs fairness vs bias (Discrimination is the effect of a decision as an adverse disproportionate results impact of algorithmic decision making: barocas &Selbst: disparate impact detection.
+
 Group Fairness:
 address systematic disparities (=discrepancies) in outcomes between demographic groups. Within such a group, members are assumed to share certain attributes and especially the sensitive attributes.
 Notions of fairness: independence, separation and sufficiency. All three criteria can be formulated purely based on statistical measures as summarized in a confusion matrix. (Barocas and M. Hardt. Fairness in Machine Learning, 2017. URL https://vimeo.com/248490141.)
-Independence. The notion of independence requires the classifications to be independent of the sensitive attribute. In the case of hiring, independence requires all demographic groups to have equal probability to get hired (or not to get hired). Regarding the task of loan granting, independence requires all groups to be equally likely (or unlikely) to receive a credit loan. It arises from the concept that people should initially have equal chances of being placed in the positive class. Equivalent variants of this notion appear under the terms demographic parity, statistical parity, equal acceptance rates, group fairness or disparate impact.
+
+Independence. 
+The notion of independence requires the classifications to be independent of the sensitive attribute. In the case of hiring, independence requires all demographic groups to have equal probability to get hired (or not to get hired). Regarding the task of loan granting, independence requires all groups to be equally likely (or unlikely) to receive a credit loan. It arises from the concept that people should initially have equal chances of being placed in the positive class. Equivalent variants of this notion appear under the terms demographic parity, statistical parity, equal acceptance rates, group fairness or disparate impact.
 Reformulations as ratio condition or inequality that allow for error of size e can be viewed as relaxations of independence (“conditional statistical parity). These more relaxed definitions are consistent with legal practice, but may not be sufficient to achieve algorithmic fairness, because the classifier might exploit the leeway (Spielraum, the available freedom to act) to maximize accuracy.
 Limitations of independence.
 Loss in utility: not allowing the perfect classifier work, because it excludes the correlations between the target labels and sensitive attribute.
 Laziness: randomly selection of candidates regardless of their qualifications  Sample size disparity
-Separation. It requires the classifications to be independent of the sensitive attribute given the true labels. Here, sensitivity (positive prediction given positive true class) and specificity (negative prediction given negative true class) are supposed to be equal for all groups in the population:
+
+Separation. 
+It requires the classifications to be independent of the sensitive attribute given the true labels. Here, sensitivity (positive prediction given positive true class) and specificity (negative prediction given negative true class) are supposed to be equal for all groups in the population:
 loan granting separation requires that all applicants receive a positive (or negative) prediction regardless of group membership, given that they would pay back their loan (default) according to ground truth.
+
+Sufficiency: 
+requires the true labels to be independent of the sensitive attribute given the classifier’s predictions.
+In the case of loan granting, sufficiency is satisfied when the score already subsumes the sensitive attribute so that the probability to pay back the loan, given a person is granted the loan, i.e. predicted to pay back, and the probability to default, given a negative prediction, is equal across groups. In the context of hiring, people from all groups should have the same probability to be “correctly” hired (or rejected) when they receive a positive (or negative) classification. Here, “correctly” means that the true label matches the predicted one, and that the classifier correctly captures the capabilities of the applicant as measured by the available features.
+Similar terms: calibration, conditional use accuracy equality. Similar to separation, sufficiency is optimality compatible, i.e. it allows the classifier to be perfect
+
 
 Literature:
 Kamishima T, Akaho S, Asoh H, et al. (2012) Considerations on fairness-aware data mining. In: IEEE 12th International Conference on Data Mining Workshops, Brussels, Belgium, pp. 378–385. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6406465 (accessed 3 November 2015).
